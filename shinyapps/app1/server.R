@@ -92,13 +92,20 @@ function(input, output) {
   #  2) Its output type is a plot
 
     #dat <- dat[substr(dat$DeviceId, 1, 3)=="r8+" & dat$db>0,]
+sliderValues <- reactive({
+  data.frame(
+    Name = c("Time Range"),
+    Value = as.character(c(input$slider_datetime)),
+    stringsAsFactors=FALSE
+    )
+  }) 
 
 
 
-    
+  
  output$distPlot <- renderPlot({
      #mainPanel(
-
+     print(sliderValues())
 #       # with(sub, reorder(sub$DeviceId,sub$time))
       q <- ggplot(data= sub, aes(x=time,y=db, color=component)) + theme(axis.text.x = element_text(angle = 45, hjust = 1))+ facet_grid(lat~lng, as.table = F, labeller=labeller(lat=ro,lng=co)) + scl + geom_point(size=0.5,alpha=0.3)
 

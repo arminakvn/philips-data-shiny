@@ -10,9 +10,9 @@ fluidPage(
  #                 start = "2016-08-24 0:00:00",
  #                 end   = "2016-08-24 23:59:00")
  sliderInput("slider_datetime", "Date & Time:", 
-            min=as.POSIXlt("2010-01-01 00:00:00", "GMT"),
-            max=as.POSIXlt("2020-01-01 23:59:59", "GMT"),
-            value=as.POSIXlt("2010-01-01 00:00:00", "GMT"),
+            min=as.POSIXlt("2016-08-24 6:00:00", "GMT"),
+            max=as.POSIXlt("2016-08-25 7:00:00", "GMT"),
+            value=as.POSIXlt("2016-08-24 7:00:00", "GMT"),
             timezone = "GMT")
  ),
   # Sidebar with a slider input for the number of bins
