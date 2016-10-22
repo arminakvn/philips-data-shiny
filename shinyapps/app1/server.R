@@ -20,7 +20,7 @@ library(shiny)
   end = ymd_hms("2016-08-24 23:59:00", tz = "America/Los_Angeles")
   setint <- function(sub, start, end) {sub <- sub[sub$time >=start & sub$time <=end,]; return(sub)} 
 
-  prep <- function(sub) {
+  prep <- function(sub,end) {
     sub <- setint(sub,start,end)
     sub$lat <- cut(sub$Latitude, lats)
     sub$lng <- cut(sub$Longitude, lons)
@@ -76,7 +76,7 @@ library(shiny)
     start = ymd_hms("2016-08-24 6:00:00", tz = "America/Los_Angeles")
     end = ymd_hms("2016-08-24 7:00:00", tz = "America/Los_Angeles")
 
-    sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),]); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
+    sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),], end); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
 
 
 
@@ -105,8 +105,9 @@ sliderValues <- reactive({
   
  output$distPlot <- renderPlot({
      #mainPanel(
-     print(sliderValues())
+     print(sliderValues()[1,"Value"])
 #       # with(sub, reorder(sub$DeviceId,sub$time))
+      sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),],ymd_hms(sliderValues()[1, "Value"],tz = "America/Los_Angeles")); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
       q <- ggplot(data= sub, aes(x=time,y=db, color=component)) + theme(axis.text.x = element_text(angle = 45, hjust = 1))+ facet_grid(lat~lng, as.table = F, labeller=labeller(lat=ro,lng=co)) + scl + geom_point(size=0.5,alpha=0.3)
 
       #hist(sub$Latitude)
