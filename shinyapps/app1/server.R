@@ -20,7 +20,7 @@ library(shiny)
   end = ymd_hms("2016-08-24 23:59:00", tz = "America/Los_Angeles")
   setint <- function(sub, start, end) {sub <- sub[sub$time >=start & sub$time <=end,]; return(sub)} 
 
-  prep <- function(sub,end) {
+  prep <- function(sub,start,end) {
     sub <- setint(sub,start,end)
     sub$lat <- cut(sub$Latitude, lats)
     sub$lng <- cut(sub$Longitude, lons)
@@ -70,13 +70,13 @@ library(shiny)
     '(-118.2891,-118.2886]' = '',
     '(-118.2886,-118.2882]' = '')
 
-
+    # /home/philips-data-shiny/shinyapps/app1/
     load("/home/philips-data-shiny/shinyapps/app1/dat0825.rdata")
     dat <- dat[!(substr(dat$DeviceId, 1, 3)  %in% c("+n+","79c","fWP", "Uoo", "bNZ", "guS", "Kac", "Ixi", "J7R", "UL4", "VZf", "GKU")),] 
     start = ymd_hms("2016-08-24 6:00:00", tz = "America/Los_Angeles")
     end = ymd_hms("2016-08-24 7:00:00", tz = "America/Los_Angeles")
 
-    sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),], end); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
+    sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),], start, end); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
 
 
 
@@ -106,8 +106,9 @@ sliderValues <- reactive({
  output$distPlot <- renderPlot({
      #mainPanel(
      print(sliderValues()[1,"Value"])
+     print(sliderValues()[2,"Value"])
 #       # with(sub, reorder(sub$DeviceId,sub$time))
-      sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),],ymd_hms(sliderValues()[1, "Value"],tz = "America/Los_Angeles")); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
+      sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),],ymd_hms(sliderValues()[1, "Value"],tz = "America/Los_Angeles"),ymd_hms(sliderValues()[2, "Value"],tz = "America/Los_Angeles")); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
       q <- ggplot(data= sub, aes(x=time,y=db, color=component)) + theme(axis.text.x = element_text(angle = 45, hjust = 1))+ facet_grid(lat~lng, as.table = F, labeller=labeller(lat=ro,lng=co)) + scl + geom_point(size=0.5,alpha=0.3)
 
       #hist(sub$Latitude)
@@ -115,6 +116,6 @@ sliderValues <- reactive({
       # )
 
     
-   },height=800)
+   },height=700)
 
 }
