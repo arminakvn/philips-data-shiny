@@ -32,7 +32,7 @@ library(shiny)
 #   # )
 # )
 #     )
-shinyUI(fluidPage(theme = shinytheme("cerulean"),
+shinyUI(fluidPage(
   
   verticalLayout(
     # titlePanel("Vertical layout example"),
