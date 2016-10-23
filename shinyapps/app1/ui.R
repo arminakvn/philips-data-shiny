@@ -35,11 +35,12 @@ library(shiny)
 
 
 shinyUI(fluidPage(
-  
+  # /home/philips-data-shiny/shinyapps/app1/
+  includeCSS("/home/philips-data-shiny/shinyapps/app1/style.css"),
   verticalLayout(
     # titlePanel("Vertical layout example"),
     wellPanel(
-      sliderInput("slider_datetime", "Date & time range:", 
+      sliderInput("slider_datetime", "Date/time:", 
             min=as.POSIXlt("2016-08-24 6:00:00", "GMT"),
             max=as.POSIXlt("2016-08-25 6:00:00", "GMT"),
             value=c(as.POSIXlt("2016-08-24 10:45:00", "GMT"),as.POSIXlt("2016-08-24 18:30:00", "GMT")),
@@ -47,7 +48,7 @@ shinyUI(fluidPage(
     ,
         selectInput(
           input= 'types', 
-          label= 'Choose Type', 
+          label= 'Components', 
           choices= c("Lmindba...", "Base..."),
           selected= c("Lmindba...", "Base...")[0]
           )

@@ -28,3 +28,7 @@
 [32m[2016-10-21 23:47:36.573] [INFO] shiny-server - [39mStarting listener on 0.0.0.0:3838
 [32m[2016-10-21 23:47:48.887] [INFO] shiny-server - [39mCreated bookmark state directory: /var/lib/shiny-server/bookmarks
 [32m[2016-10-21 23:47:48.901] [INFO] shiny-server - [39mCreated user bookmark state directory: /var/lib/shiny-server/bookmarks/shiny
+[32m[2016-10-23 19:11:50.499] [INFO] shiny-server - [39mShiny Server v1.4.6.809 (Node.js v0.10.46)
+[32m[2016-10-23 19:11:50.502] [INFO] shiny-server - [39mUsing config file "/etc/shiny-server/shiny-server.conf"
+[33m[2016-10-23 19:11:50.575] [WARN] shiny-server - [39mRunning as root unnecessarily is a security risk! You could be running more securely as non-root.
+[32m[2016-10-23 19:11:50.581] [INFO] shiny-server - [39mStarting listener on 0.0.0.0:3838
