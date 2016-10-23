@@ -42,14 +42,14 @@ shinyUI(fluidPage(
       sliderInput("slider_datetime", "Date & time range:", 
             min=as.POSIXlt("2016-08-24 6:00:00", "GMT"),
             max=as.POSIXlt("2016-08-25 6:00:00", "GMT"),
-            value=c(as.POSIXlt("2016-08-24 00:00:00", "GMT"),as.POSIXlt("2016-08-25 12:00:00", "GMT")),
+            value=c(as.POSIXlt("2016-08-24 10:45:00", "GMT"),as.POSIXlt("2016-08-24 18:30:00", "GMT")),
             timezone = "GMT")
     ,
         selectInput(
           input= 'types', 
           label= 'Choose Type', 
           choices= c("Lmindba...", "Base..."),
-          selected= c("Lmindba...", "Base...")[0]
+          selected= c("Lmindba...""Base...")[0]
           )
 
     )

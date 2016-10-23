@@ -71,7 +71,7 @@ library(shiny)
     '(-118.2886,-118.2882]' = '')
 
     # /home/philips-data-shiny/shinyapps/app1/
-    load("/home/philips-data-shiny/shinyapps/app1/dat0825.rdata")
+    load("dat0825.rdata")
     dat <- dat[!(substr(dat$DeviceId, 1, 3)  %in% c("+n+","79c","fWP", "Uoo", "bNZ", "guS", "Kac", "Ixi", "J7R", "UL4", "VZf", "GKU")),] 
     start = ymd_hms("2016-08-24 6:00:00", tz = "America/Los_Angeles")
     end = ymd_hms("2016-08-24 7:00:00", tz = "America/Los_Angeles")
