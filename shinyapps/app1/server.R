@@ -99,16 +99,32 @@ sliderValues <- reactive({
     stringsAsFactors=FALSE
     )
   }) 
-
+selectValues <- reactive({
+  if(input$types == "Lmindba...") {
+    data.frame(
+    Name = c("Type Value"),
+    Value = c("Lmindba", "Leqdba", "Lmaxdba")
+    # stringsAsFactors=FALSE
+    )
+  } else {
+    data.frame(
+    Name = c("Type Value"),
+    Value = c("Base", "Voice", "High"),
+    # stringsAsFactors=FALSE
+    )
+  }
+  # print(input$types)
+  
+  })
 
 
   
  output$distPlot <- renderPlot({
      #mainPanel(
      print(sliderValues()[1,"Value"])
-     print(sliderValues()[2,"Value"])
+     print(selectValues()[,"Value"])
 #       # with(sub, reorder(sub$DeviceId,sub$time))
-      sub <- prep(dat[dat$component %in% c("Lmindba", "Leqdba", "Lmaxdba"),],ymd_hms(sliderValues()[1, "Value"],tz = "America/Los_Angeles"),ymd_hms(sliderValues()[2, "Value"],tz = "America/Los_Angeles")); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
+      sub <- prep(dat[dat$component %in% selectValues()[,"Value"],],ymd_hms(sliderValues()[1, "Value"],tz = "America/Los_Angeles"),ymd_hms(sliderValues()[2, "Value"],tz = "America/Los_Angeles")); scl <-  scale_color_manual(values=c("#bd0026", "#ffffb2", "#fd8d3c"))
       q <- ggplot(data= sub, aes(x=time,y=db, color=component)) + theme(axis.text.x = element_text(angle = 45, hjust = 1))+ facet_grid(lat~lng, as.table = F, labeller=labeller(lat=ro,lng=co)) + scl + geom_point(size=0.5,alpha=0.3)
 
       #hist(sub$Latitude)

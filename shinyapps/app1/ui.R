@@ -32,16 +32,26 @@ library(shiny)
 #   # )
 # )
 #     )
+
+
 shinyUI(fluidPage(
   
   verticalLayout(
     # titlePanel("Vertical layout example"),
     wellPanel(
-      sliderInput("slider_datetime", "Date & Time:", 
+      sliderInput("slider_datetime", "Date & time range:", 
             min=as.POSIXlt("2016-08-24 6:00:00", "GMT"),
             max=as.POSIXlt("2016-08-25 7:00:00", "GMT"),
             value=c(as.POSIXlt("2016-08-24 10:00:00", "GMT"),as.POSIXlt("2016-08-24 12:00:00", "GMT")),
             timezone = "GMT")
+    ,
+        selectInput(
+          input= 'types', 
+          label= 'Choose Type', 
+          choices= c("Lmindba...", "Base..."),
+          selected= c("Lmindba...", "Base...")[0]
+          )
+
     )
   ),
   plotOutput("distPlot")
