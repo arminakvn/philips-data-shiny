@@ -41,8 +41,8 @@ shinyUI(fluidPage(
     wellPanel(
       sliderInput("slider_datetime", "Date & time range:", 
             min=as.POSIXlt("2016-08-24 6:00:00", "GMT"),
-            max=as.POSIXlt("2016-08-25 7:00:00", "GMT"),
-            value=c(as.POSIXlt("2016-08-24 10:00:00", "GMT"),as.POSIXlt("2016-08-24 12:00:00", "GMT")),
+            max=as.POSIXlt("2016-08-25 6:00:00", "GMT"),
+            value=c(as.POSIXlt("2016-08-24 00:00:00", "GMT"),as.POSIXlt("2016-08-25 12:00:00", "GMT")),
             timezone = "GMT")
     ,
         selectInput(

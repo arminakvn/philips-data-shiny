@@ -110,7 +110,7 @@ selectValues <- reactive({
     data.frame(
     Name = c("Type Value"),
     Value = c("Base", "Voice", "High"),
-    # stringsAsFactors=FALSE
+    stringsAsFactors=FALSE
     )
   }
   # print(input$types)
