@@ -49,7 +49,7 @@ shinyUI(fluidPage(
           input= 'types', 
           label= 'Choose Type', 
           choices= c("Lmindba...", "Base..."),
-          selected= c("Lmindba...""Base...")[0]
+          selected= c("Lmindba...", "Base...")[0]
           )
 
     )
